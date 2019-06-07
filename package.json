@@ -1,0 +1,26 @@
+{
+  "name": "zermelo-cli",
+  "version": "0.1.0",
+  "description": "CLI wrapper for Zermelo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stingalleman/zermelo-cli.git"
+  },
+  "author": "Sting Alleman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stingalleman/zermelo-cli/issues"
+  },
+  "homepage": "https://github.com/stingalleman/zermelo-cli#readme",
+  "dependencies": {
+    "commander": "^2.20.0",
+    "request": "^2.88.0"
+  },
+  "bin": {
+    "zermelo": "./app.js"
+  }
+}
