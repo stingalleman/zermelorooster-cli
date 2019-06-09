@@ -10,7 +10,7 @@ var config = require('./lib/config.json');
 
 
 program
-    .version('0.1.1')
+    .version('0.1.3')
     .description('CLI wrapper for Zermelo, developed by Sting Alleman')
 
 program
