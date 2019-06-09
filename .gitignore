@@ -1,6 +1,7 @@
 config.json
 lib/config.json
 data.json
+.DS_Store
 
 # Logs
 logs
