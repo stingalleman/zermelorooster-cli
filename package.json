@@ -1,6 +1,6 @@
 {
   "name": "zermelo-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI wrapper for Zermelo",
   "main": "app.js",
   "scripts": {
@@ -26,5 +26,17 @@
   },
   "bin": {
     "zermelo": "./app.js"
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "zermelo",
+    "cli",
+    "school",
+    "schedule",
+    "rooster",
+    "the netherlands"
+  ]
 }
