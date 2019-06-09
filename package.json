@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/stingalleman/zermelo-cli#readme",
   "dependencies": {
+    "chalk": "^2.4.2",
     "commander": "^2.20.0",
+    "inquirer": "^6.3.1",
+    "moment": "^2.24.0",
+    "ora": "^3.4.0",
     "request": "^2.88.0"
   },
   "bin": {
