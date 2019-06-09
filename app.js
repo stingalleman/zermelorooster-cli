@@ -40,24 +40,26 @@ program
 
 program
     .command('week')
-    .description('show your appointments for the week')
+    .description('show how many appointments you have this week')
     .action(function () {
         var ew = moment().endOf('week').unix()
         var sw = moment().startOf('week').unix()
-        console.log(ew + ' ' + sw)
+        //console.log(ew + ' ' + sw)
         //https://alfrink.zportal.nl/api/v3/appointments?user=~me&start=1560246900&end=1560249900&access_token=62du45uvg5uqvqct5t0a9tmpgd
         var options = {
-            url: 'https://' + config.schoolName + '.zportal.nl/api/v3/appointments?user=~me&start=' + sw + '&end=' + ew + '&access_token=' + config.token
+            url: 'https://' + config.schoolName + '.zportal.nl/api/v3/appointments?user=~me&start=' + sw + '&end=' + ew + '&access_token=' + config.token,
+            headers: {
+                'Content-Type': 'application/json'
+            }
         }
 
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
-                var data = JSON.stringify(body, null, '  ')
-                fs.writeFileSync('./lib/data.json', data)
-                console.log(body)
+                fs.writeFileSync('./lib/data.json', body, 'utf8')
+                jsonData = JSON.parse(body)
+                console.log('You have ' + jsonData.response.totalRows + ' appointments this week')
             }
         }
-        console.log(options.url)
         request(options, callback);
     });
 
@@ -72,3 +74,9 @@ program
    }) */
 
 program.parse(process.argv);
+
+// if no cmd/args given: show help
+if (!process.argv.slice(2).length) {
+    program.outputHelp();
+  }
+  
