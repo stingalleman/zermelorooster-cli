@@ -24,7 +24,7 @@ const consoleSuccess = chalk.green('SUCCESS | ')
 
 */
 program
-    .version('0.3.0')
+    .version('1.0.0')
     .description('CLI wrapper for Zermelo, developed by Sting Alleman')
 
 // token cmd

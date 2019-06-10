@@ -1,6 +1,6 @@
 {
-  "name": "zermelo-cli",
-  "version": "0.3.0",
+  "name": "zermelorooster-cli",
+  "version": "1.0.0",
   "description": "CLI wrapper for Zermelo",
   "main": "app.js",
   "scripts": {
