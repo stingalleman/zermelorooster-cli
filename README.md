@@ -1,4 +1,6 @@
 # Zermelo CLI
+[![https://nodei.co/npm/zermelo-cli.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/zermelo-cli.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/zermelo-cli)
+
 CLI wrapper for Zermelo made by Sting Alleman
 
 
