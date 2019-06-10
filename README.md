@@ -33,7 +33,7 @@ Options:
   -h, --help     output usage information
 
 Commands:
-  token          input your own zermelo token
+  token          input a zermelo token
   login          login to your zportal account
   week           show how many appointments you have this week
   status         Show the status of your school's zportal portal

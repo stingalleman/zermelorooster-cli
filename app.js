@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 
 const program = require('commander');
+const ora = require('ora')
 const request = require('request');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
@@ -25,13 +26,13 @@ const consoleWarn = chalk.yellow('WARN! ')
 
 */
 program
-    .version('1.0.1')
+    .version('1.1.0')
     .description('CLI wrapper for Zermelo, developed by Sting Alleman')
 
 // token cmd
 program
     .command('token')
-    .description('input your own zermelo token')
+    .description('input a zermelo token')
     .action(function () {
         var questions = [{
                 type: "input",
@@ -58,15 +59,17 @@ program
         var questions = [{
                 type: "input",
                 name: "schoolName",
-                message: "What's your zportal school name?"
+                message: "What's your Zermelo school name?"
             },
             {
                 type: "input",
                 name: "authCode",
-                message: "What's your zportal authorization code?"
+                message: "What's your Zermelo authorization code?"
             }
         ]
         inquirer.prompt(questions).then(answers => {
+            const spinner = ora("Logging in to your Zermelo account...").start()
+            spinner.color = 'green'
             conf.set('authCode', answers.authCode)
             conf.set('schoolName', answers.schoolName)
 
@@ -74,8 +77,10 @@ program
                 if (!error && response.statusCode == 200) {
                     jsonData = JSON.parse(body)
                     conf.set('token', jsonData.access_token)
+                    spinner.stop()
                     console.log(consoleSuccess + "Successfully received and stored your Zermelo API token!")
                 } else {
+                    spinner.stop()
                     console.log(consoleError + "Something went wrong! Maybe you made a typo? And make sure you don't have any spaces in the authorization code!")
                 }
             }
@@ -96,6 +101,8 @@ program
     .command('week')
     .description('show how many appointments you have this week')
     .action(function () {
+        const spinner = ora('Sending HTTP request...').start()
+        spinner.color = 'green'
         var ew = moment().endOf('week').unix()
         var sw = moment().startOf('week').unix()
         var options = {
@@ -108,8 +115,10 @@ program
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
                 jsonData = JSON.parse(body)
+                spinner.stop()
                 console.log('You have ' + jsonData.response.totalRows + ' appointments this week')
             } else {
+                spinner.stop()
                 console.log(error)
                 console.log(body)
             }
@@ -122,6 +131,8 @@ program
     .command('status')
     .description("Show the status of your school's zportal portal")
     .action(function () {
+        const spinner = ora('Sending HTTP request...').start()
+        spinner.color = 'green'
         var options = {
             url: 'https://' + conf.get('schoolName') + '.zportal.nl/api/v3/status/status_message',
         }
@@ -129,9 +140,11 @@ program
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
                 jsonData = JSON.parse(body)
+                spinner.stop()
                 console.log(consoleSuccess + body)
             } else {
-                console.log(consoleError + "Something went wrong!")
+                spinner.stop()
+                console.log(consoleError + "Something went wrong! Did you run zermelo login yet?")
             }
         }
         request(options, callback);
@@ -144,6 +157,7 @@ program
     .action(function () {
         var confJson = JSON.stringify(conf.get(), null, '  ')
         console.log(confJson)
+        console.log('  ')
         console.log(consoleWarn + 'Do not share your token! Anybody that has access to this token can abuse your account using the API!')
     })
 
