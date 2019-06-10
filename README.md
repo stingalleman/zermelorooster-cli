@@ -4,6 +4,8 @@ CLI wrapper for Zermelo made by Sting Alleman
 
 ## Installation
 `npm install --global zermelo-cli`
+Then login to your school's zportal account:
+`zermelo login`
 
 #### Development
 ```bash
@@ -15,7 +17,7 @@ zermelo
 ```
 
 ## Usage
-```bash
+```
 Usage: zermelo [options] [command]
 
 CLI wrapper for Zermelo, developed by Sting Alleman
@@ -25,6 +27,9 @@ Options:
   -h, --help     output usage information
 
 Commands:
-  login          login to zermelo
+  token          input your own zermelo token
+  login          login to your zportal account
   week           show how many appointments you have this week
+  status         Show the status of your school's zportal portal
+  conf           see whats listed in your conf
 ```
