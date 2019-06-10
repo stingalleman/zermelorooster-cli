@@ -77,11 +77,6 @@ program
         request(options, callback);
     });
 
-program
-    .command('test')
-    .action(function () {
-        console.log(conf.get())
-    });
 
 program.parse(process.argv);
 
