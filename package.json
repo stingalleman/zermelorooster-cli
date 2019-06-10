@@ -1,6 +1,6 @@
 {
   "name": "zermelorooster-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI wrapper for Zermelo",
   "main": "app.js",
   "scripts": {
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stingalleman/zermelo-cli.git"
+    "url": "git+https://github.com/stingalleman/zermelorooster-cli.git"
   },
   "author": "Sting Alleman",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/stingalleman/zermelo-cli/issues",
+    "url": "https://github.com/stingalleman/zermelorooster-cli/issues",
     "email": "stingalleman@icloud.com"
   },
-  "homepage": "https://github.com/stingalleman/zermelo-cli#readme",
+  "homepage": "https://github.com/stingalleman/zermelorooster-cli#readme",
   "dependencies": {
     "chalk": "^2.4.2",
     "commander": "^2.20.0",
