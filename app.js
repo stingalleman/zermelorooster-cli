@@ -15,8 +15,9 @@ const conf = new configStore(pkg.name, {
     authCode: ''
 });
 
-const consoleError = chalk.red('ERROR | ');
-const consoleSuccess = chalk.green('SUCCESS | ')
+const consoleError = chalk.red('ERR! ');
+const consoleSuccess = chalk.green('SUCCESS! ')
+const consoleWarn = chalk.yellow('WARN! ')
 
 /*
 
@@ -143,6 +144,7 @@ program
     .action(function () {
         var confJson = JSON.stringify(conf.get(), null, '  ')
         console.log(confJson)
+        console.log(consoleWarn + 'Do not share your token! Anybody that has access to this token can abuse your account using the API!')
     })
 
 

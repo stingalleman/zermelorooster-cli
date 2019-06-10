@@ -8,6 +8,7 @@ CLI wrapper for Zermelo made by Sting Alleman
 Install `zermelorooster-cli`:
 
 `npm install --global zermelorooster-cli`
+
 Then login to your school's zportal account:
 
 ```zermelo login```
