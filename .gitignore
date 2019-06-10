@@ -1,6 +1,5 @@
-config.json
-lib/config.json
-data.json
+#lib/config.json
+#lib/data.json
 .DS_Store
 
 # Logs
