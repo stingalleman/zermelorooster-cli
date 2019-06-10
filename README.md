@@ -3,7 +3,7 @@ CLI wrapper for Zermelo made by Sting Alleman
 
 
 ## Installation
-`npm install zermelo-cli`
+`npm install --global zermelo-cli`
 
 ### Development
 ```bash
