@@ -46,7 +46,6 @@ program
             var jsonAnswers = JSON.stringify(answers)
             conf.set('token', answers.token)
             conf.set('schoolName', answers.schoolName)
-            console.log(conf.get())
         })
     });
 
@@ -57,7 +56,6 @@ program
     .action(function () {
         var ew = moment().endOf('week').unix()
         var sw = moment().startOf('week').unix()
-        //https://alfrink.zportal.nl/api/v3/appointments?user=~me&start=1560246900&end=1560249900&access_token=62du45uvg5uqvqct5t0a9tmpgd
         var options = {
             url: 'https://' + conf.get('schoolName') + '.zportal.nl/api/v3/appointments?user=~me&start=' + sw + '&end=' + ew + '&access_token=' + conf.get('token'),
             headers: {
