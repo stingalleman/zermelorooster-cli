@@ -20,6 +20,8 @@ const consoleError = chalk.red('ERR! ');
 const consoleSuccess = chalk.green('SUCCESS! ')
 const consoleWarn = chalk.yellow('WARN! ')
 
+const endpoint = 'https://' + conf.get('schoolName') + '.zportal.nl'
+
 /*
 
         START CODE
@@ -160,7 +162,6 @@ program
         console.log('  ')
         console.log(consoleWarn + 'Do not share your token! Anybody that has access to this token can abuse your account using the API!')
     })
-
 
 program.parse(process.argv);
 
