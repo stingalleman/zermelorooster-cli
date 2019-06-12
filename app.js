@@ -9,6 +9,7 @@ const moment = require('moment')
 const fs = require('fs');
 const configStore = require('configstore');
 const pkg = require('./package.json');
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
 const conf = new configStore(pkg.name, {
     token: '',
@@ -136,8 +137,9 @@ program
         const spinner = ora('Sending HTTP request...').start()
         spinner.color = 'green'
         var options = {
-            url: 'https://' + conf.get('schoolName') + '.zportal.nl/api/v3/status/status_message',
+            url: endpoint + '/api/v3/status/status_message',
         }
+        console.log(options.url)
 
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
@@ -160,8 +162,60 @@ program
         var confJson = JSON.stringify(conf.get(), null, '  ')
         console.log(confJson)
         console.log('  ')
+        console.log('current endpoint: ' + endpoint)
+        console.log('  ')
         console.log(consoleWarn + 'Do not share your token! Anybody that has access to this token can abuse your account using the API!')
     })
+
+//login cmd
+program
+    .command('add')
+    .description('add an appointment to an user')
+    .action(function () {
+        var questions = [{
+                type: "input",
+                name: "subject",
+                message: "Subject"
+            },
+            {
+                type: "input",
+                name: "class",
+                message: "Class (example: b2.2c)"
+            },
+            {
+                type: "input",
+                name: "class",
+                message: ""
+            }
+        ]
+        inquirer.prompt(questions).then(answers => {
+            const spinner = ora("Logging in to your Zermelo account...").start()
+            spinner.color = 'green'
+            conf.set('authCode', answers.authCode)
+            conf.set('schoolName', answers.schoolName)
+
+            function callback(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    jsonData = JSON.parse(body)
+                    conf.set('token', jsonData.access_token)
+                    spinner.stop()
+                    console.log(consoleSuccess + "Successfully received and stored your Zermelo API token!")
+                } else {
+                    spinner.stop()
+                    console.log(consoleError + "Something went wrong! Maybe you made a typo? And make sure you don't have any spaces in the authorization code!")
+                }
+            }
+            var payload = {
+                grant_type: 'authorization_code',
+                code: conf.get('authCode')
+            };
+
+            request.post('https://' + conf.get('schoolName') + '.zportal.nl/api/v3/oauth/token', {
+                form: payload
+            }, callback)
+
+        })
+    });
 
 program.parse(process.argv);
 
