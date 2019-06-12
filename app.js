@@ -20,7 +20,7 @@ const conf = new configStore(pkg.name, {
 const consoleError = chalk.red('ERR! ');
 const consoleSuccess = chalk.green('SUCCESS! ')
 const consoleWarn = chalk.yellow('WARN! ')
-
+//Zermelo API endpoint
 const endpoint = 'https://' + conf.get('schoolName') + '.zportal.nl'
 
 /*
