@@ -30,7 +30,7 @@ const endpoint = 'https://' + conf.get('schoolName') + '.zportal.nl'
 */
 program
     .version('1.1.0')
-    .description('CLI wrapper for Zermelo, developed by Sting Alleman')
+    .description('CLI wrapper for Zermelo')
 
 // token cmd
 program
